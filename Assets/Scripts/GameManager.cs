@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour
     private double spawnAmmoInterval;
 
     [SerializeField]
+    private GameObject enemy;
+
+    [SerializeField]
     private double spawnAsteroidInterval;
 
     public static int gameEnimies = 0;
@@ -23,20 +27,27 @@ public class GameManager : MonoBehaviour
     private float timeAmmoCounter;
     private float timeAsteroidCounter;
 
+    [SerializeField]
+    private Text ammos;
+
     private void Start()
     {
+        ammos.text = "";
         timeAmmoCounter = 0;
         timeAsteroidCounter = 0;
         Camera mainCamera = Camera.main;
         leftLimit = mainCamera.ScreenToWorldPoint(new Vector3(0, 1, 0));
         rightLimit = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
         lastSpawnedAmmoTime = timeAmmoCounter;
-        lastSpawnedAsteroidTime = timeAsteroidCounter;        
+        lastSpawnedAsteroidTime = timeAsteroidCounter;
+
+
+        SpawnEnemy();
     }
 
     void FixedUpdate()
     {
-
+        ammos.text = $"Quantidade de municao: {ShipController.ammoCount}";
         timeAmmoCounter += Time.deltaTime;
         timeAsteroidCounter += Time.deltaTime;
 
@@ -76,4 +87,18 @@ public class GameManager : MonoBehaviour
                 Random.Range(leftLimit.y, rightLimit.y)),
                 new Quaternion());
     }
+
+    void SpawnEnemy()
+    {
+        float xMin = GameManager.leftLimit.x;
+        float xMax = GameManager.rightLimit.x;
+
+        float yMin = GameManager.leftLimit.y;
+        float yMax = GameManager.rightLimit.y;
+
+        Vector2 posicaoInicial = new Vector2(xMin, Random.Range(yMin, yMax));
+        Quaternion rotacaoInicial = new Quaternion();
+        Instantiate(enemy, posicaoInicial, rotacaoInicial);
+    }
+
 }

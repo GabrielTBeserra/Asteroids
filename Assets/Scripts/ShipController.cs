@@ -17,7 +17,7 @@ public class ShipController : MonoBehaviour
     private int life;
     Rigidbody2D rgb2;
 
-    private int ammoCount;
+    public static int ammoCount;
     void Start()
     {
         rgb2 = GetComponent<Rigidbody2D>();
@@ -29,7 +29,6 @@ public class ShipController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Quantidade de municao: " + ammoCount);
             if(ammoCount > 0)
             {
                 Instantiate(bulletPrefab, firespotTransform.position, firespotTransform.rotation);
