@@ -4,43 +4,24 @@ public class EnemyController : MonoBehaviour
 {
     private Rigidbody2D rgb;
 
-    private Vector2[] ac = new Vector2[] { Vector2.right, Vector2.up, Vector2.down , Vector2.left };
+    private Vector2[] vectorDir = new Vector2[] { Vector2.right, Vector2.up, Vector2.down, Vector2.left };
 
-    private float addForceTime;
-    private float lastTime;
-    private float interval = 0;
+
 
     void Start()
     {
-        addForceTime = 1;
-        lastTime = 0;
         rgb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        CheckCamLimits();    
+        CheckCamLimits();
     }
 
 
     void FixedUpdate()
     {
-
-        addForceTime += Time.deltaTime;
-
-
-        //if ((lastTime + interval) < addForceTime)
-        //{
-            addForceTime = 0;
-
-
-            int a = Random.Range(0, ac.Length);
-
-            rgb.AddForce(ac[a] * 10);
-        
-        
-        //}
-
+        rgb.AddForce(vectorDir[Random.Range(0, vectorDir.Length)] * 5);
     }
 
     void CheckCamLimits()

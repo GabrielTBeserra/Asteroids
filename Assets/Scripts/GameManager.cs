@@ -21,11 +21,18 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private double spawnAsteroidInterval;
 
+    [SerializeField]
+    private double spawnEnemyInterval;
+
     public static int gameEnimies = 0;
     private float lastSpawnedAmmoTime;
     private float lastSpawnedAsteroidTime;
+    private float lastSpawnedEnemyTime;
     private float timeAmmoCounter;
     private float timeAsteroidCounter;
+    private float timeEnemyCounter;
+    
+
 
     [SerializeField]
     private Text ammos;
@@ -35,14 +42,14 @@ public class GameManager : MonoBehaviour
         ammos.text = "";
         timeAmmoCounter = 0;
         timeAsteroidCounter = 0;
+        timeEnemyCounter = 0;
         Camera mainCamera = Camera.main;
         leftLimit = mainCamera.ScreenToWorldPoint(new Vector3(0, 1, 0));
         rightLimit = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
         lastSpawnedAmmoTime = timeAmmoCounter;
         lastSpawnedAsteroidTime = timeAsteroidCounter;
+        lastSpawnedEnemyTime = timeEnemyCounter;
 
-
-        SpawnEnemy();
     }
 
     void FixedUpdate()
@@ -50,6 +57,7 @@ public class GameManager : MonoBehaviour
         ammos.text = $"Quantidade de municao: {ShipController.ammoCount}";
         timeAmmoCounter += Time.deltaTime;
         timeAsteroidCounter += Time.deltaTime;
+        timeEnemyCounter += Time.deltaTime;
 
 
         if ((lastSpawnedAmmoTime + spawnAmmoInterval) < timeAmmoCounter)
@@ -62,6 +70,12 @@ public class GameManager : MonoBehaviour
         {
             SpawnAsteroid();
             timeAsteroidCounter = 0;
+        }
+
+        if ((lastSpawnedEnemyTime + spawnEnemyInterval) < timeEnemyCounter)
+        {
+            SpawnEnemy();
+            timeEnemyCounter = 0;
         }
     }
 
