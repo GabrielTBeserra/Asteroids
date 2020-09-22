@@ -31,18 +31,18 @@ public class ShipController : MonoBehaviour
 
     void Update()
     {
-
         pos = transform.position;
         rot = transform.rotation;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        rgb2.angularVelocity = 0;
+
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
             if(ammoCount > 0)
             {
                 Instantiate(bulletPrefab, firespotTransform.position, firespotTransform.rotation);
                 ammoCount--;
             }
-            
         }
     }
 
@@ -53,9 +53,8 @@ public class ShipController : MonoBehaviour
         float h = rotationSpeed * Input.GetAxisRaw("Horizontal");
         float v = rotationSpeed * Input.GetAxisRaw("Vertical");
 
-        //transform.Rotate(-Vector3.forward * h * rotationSpeed);
-
-        rgb2.AddTorque(-h * rotationSpeed);
+        transform.Rotate(-Vector3.forward * h * rotationSpeed);
+        //rgb2.AddTorque(-h * rotationSpeed);
         rgb2.AddRelativeForce(Vector3.up * v * speed);
 
 
@@ -90,7 +89,6 @@ public class ShipController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Ammo"))
         {
-
             if (ammoCount >= 5)
             {
                 ammoCount = 10;
@@ -99,7 +97,6 @@ public class ShipController : MonoBehaviour
             {
                 ammoCount += 5;
             }
-            
             
             Destroy(col.gameObject);
         }
@@ -110,10 +107,8 @@ public class ShipController : MonoBehaviour
             {
                 Respawn();
                 life = 3;
-            }
-                
+            }       
         }
-
     }
 
     void OnTriggerEnter2D(Collider2D collision)

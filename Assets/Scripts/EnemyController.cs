@@ -90,15 +90,13 @@ public class EnemyController : MonoBehaviour
         Instantiate(bulletPrefab, transform.position, shooter.rotation);
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        GameManager.gameEnemies--;
-        Destroy(gameObject);
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
-        GameManager.gameEnemies--;
-        Destroy(gameObject);
+        if (collision.CompareTag("Bullet"))
+        {
+
+            GameManager.gameEnemies--;
+            Destroy(gameObject);
+        }
     }
 }
