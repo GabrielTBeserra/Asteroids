@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ShipController : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class ShipController : MonoBehaviour
     private int life;
     Rigidbody2D rgb2;
 
+    public static Vector3 pos;
+    public static Quaternion rot;
+
     public static int ammoCount;
     void Start()
     {
@@ -27,6 +31,10 @@ public class ShipController : MonoBehaviour
 
     void Update()
     {
+
+        pos = transform.position;
+        rot = transform.rotation;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if(ammoCount > 0)
@@ -49,8 +57,6 @@ public class ShipController : MonoBehaviour
 
         rgb2.AddTorque(-h * rotationSpeed);
         rgb2.AddRelativeForce(Vector3.up * v * speed);
-
-
 
 
     }
@@ -82,7 +88,6 @@ public class ShipController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-
         if (col.gameObject.CompareTag("Ammo"))
         {
 
@@ -109,6 +114,13 @@ public class ShipController : MonoBehaviour
                 
         }
 
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameManager.gameEnemies--;
+        life = 3;
+        Respawn();
     }
 
     void Respawn()

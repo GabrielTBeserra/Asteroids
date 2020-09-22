@@ -44,7 +44,7 @@ public class AsteroidController : MonoBehaviour
         // Destroi o asteroid caso uma 'Bullet' toque nele
         if (collision.CompareTag("Bullet"))
         {
-            GameManager.gameEnimies--;
+            GameManager.gameAsteroids--;
             Destroy(gameObject);
         }
     }

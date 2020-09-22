@@ -3,11 +3,13 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    // Limite de X e Y do lado esquerdo da camera
     public static Vector2 leftLimit;
+    // Limite de X e Y do lado direito da camera
     public static Vector2 rightLimit;
 
     [SerializeField]
-    GameObject[] enimies;
+    GameObject[] asteroids;
 
     [SerializeField]
     GameObject ammo;
@@ -24,7 +26,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private double spawnEnemyInterval;
 
-    public static int gameEnimies = 0;
+
+    public static int gameEnemies = 0;
+    public static int gameAsteroids = 0;
     private float lastSpawnedAmmoTime;
     private float lastSpawnedAsteroidTime;
     private float lastSpawnedEnemyTime;
@@ -81,15 +85,15 @@ public class GameManager : MonoBehaviour
 
     void SpawnAsteroid()
     {
-        if (gameEnimies < 10)
+        if (gameAsteroids < 10)
         {
             Instantiate(
-                enimies[Random.Range(0, enimies.Length)],
+                asteroids[Random.Range(0, asteroids.Length)],
                 new Vector2(Random.Range(leftLimit.x, rightLimit.x),
                 Random.Range(leftLimit.y, rightLimit.y)),
                 new Quaternion());
 
-            gameEnimies++;
+            gameAsteroids++;
         }
     }
 
@@ -104,6 +108,11 @@ public class GameManager : MonoBehaviour
 
     void SpawnEnemy()
     {
+
+        if (gameEnemies > 5) return;
+
+        gameEnemies++;
+
         float xMin = GameManager.leftLimit.x;
         float xMax = GameManager.rightLimit.x;
 
