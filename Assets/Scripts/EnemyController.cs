@@ -33,9 +33,11 @@ public class EnemyController : MonoBehaviour
         // Verifica os limites da camera para teleportar para o outro lado
         CheckCamLimits();
         // Mantem a nave sempre 'reta' mesmo se ouver colisao
-        transform.rotation = Quaternion.identity;
+        //transform.rotation = Quaternion.identity;
         // Adiciona uma forca aleatoria em um direcao aleatoria
-        rgb.AddForce(vectorDir[Random.Range(0, vectorDir.Length)] * 5);
+        //rgb.AddForce(vectorDir[Random.Range(0, vectorDir.Length)] * 5);
+        rgb.velocity = vectorDir[Random.Range(0, vectorDir.Length)] * 5;
+
     }
 
 

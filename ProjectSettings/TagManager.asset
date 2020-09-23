@@ -7,6 +7,7 @@ TagManager:
   - BlackRole
   - Bullet
   - Ammo
+  - EnemieBullet
   layers:
   - Default
   - TransparentFX

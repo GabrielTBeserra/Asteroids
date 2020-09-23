@@ -40,7 +40,8 @@ public class ShipController : MonoBehaviour
         {
             if(ammoCount > 0)
             {
-                Instantiate(bulletPrefab, firespotTransform.position, firespotTransform.rotation);
+                GameObject bulletGo = Instantiate(bulletPrefab, firespotTransform.position, firespotTransform.rotation);
+                bulletGo.tag = gameObject.tag;
                 ammoCount--;
             }
         }
@@ -56,8 +57,6 @@ public class ShipController : MonoBehaviour
         transform.Rotate(-Vector3.forward * h * rotationSpeed);
         //rgb2.AddTorque(-h * rotationSpeed);
         rgb2.AddRelativeForce(Vector3.up * v * speed);
-
-
     }
 
     void CheckCamLimits()
@@ -87,7 +86,7 @@ public class ShipController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ammo"))
+        if (col.gameObject.CompareTag("Ammo")) 
         {
             if (ammoCount >= 5)
             {
