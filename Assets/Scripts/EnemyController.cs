@@ -22,10 +22,14 @@ public class EnemyController : MonoBehaviour
 
     float lastShootTime;
     float timeShootCounter;
+    float lastMovimentTime;
+    float timeMovimentTime;
+    float movimentInterval = 1;
 
     void Start()
     {
         rgb = GetComponent<Rigidbody2D>();
+        rgb.AddForce(vectorDir[Random.Range(0, vectorDir.Length)] * 5);
     }
 
     void Update()
@@ -35,20 +39,24 @@ public class EnemyController : MonoBehaviour
         // Mantem a nave sempre 'reta' mesmo se ouver colisao
         //transform.rotation = Quaternion.identity;
         // Adiciona uma forca aleatoria em um direcao aleatoria
-        //rgb.AddForce(vectorDir[Random.Range(0, vectorDir.Length)] * 5);
-        rgb.velocity = vectorDir[Random.Range(0, vectorDir.Length)] * 5;
-
     }
 
 
     void FixedUpdate()
     {
         timeShootCounter += Time.deltaTime;
+        timeMovimentTime += Time.deltaTime;
 
         if ((lastShootTime + shootInterval) < timeShootCounter)
         {
             Shot();
             timeShootCounter = 0;
+        }
+
+        if ((lastMovimentTime + movimentInterval) < timeMovimentTime)
+        {
+            rgb.velocity = vectorDir[Random.Range(0, vectorDir.Length)] * 5;
+            timeMovimentTime = 0;
         }
     }
 
@@ -89,14 +97,15 @@ public class EnemyController : MonoBehaviour
 
         shooter.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 1000);
 
-        Instantiate(bulletPrefab, transform.position, shooter.rotation);
+        GameObject bulletGo = Instantiate(bulletPrefab, transform.position, shooter.rotation);
+        bulletGo.tag = "EnemyBullet";
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        
         if (collision.CompareTag("Bullet"))
         {
-
             GameManager.gameEnemies--;
             Destroy(gameObject);
         }

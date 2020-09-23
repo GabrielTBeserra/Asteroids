@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UIElements;
 
 public class ShipController : MonoBehaviour
 {
@@ -38,10 +37,10 @@ public class ShipController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
-            if(ammoCount > 0)
+            if (ammoCount > 0)
             {
-                GameObject bulletGo = Instantiate(bulletPrefab, firespotTransform.position, firespotTransform.rotation);
-                bulletGo.tag = gameObject.tag;
+            GameObject gm = Instantiate(bulletPrefab, firespotTransform.position, firespotTransform.rotation);
+                gm.tag = "Bullet";
                 ammoCount--;
             }
         }
@@ -86,7 +85,7 @@ public class ShipController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ammo")) 
+        if (col.gameObject.CompareTag("Ammo"))
         {
             if (ammoCount >= 5)
             {
@@ -96,7 +95,7 @@ public class ShipController : MonoBehaviour
             {
                 ammoCount += 5;
             }
-            
+
             Destroy(col.gameObject);
         }
         else
@@ -106,15 +105,19 @@ public class ShipController : MonoBehaviour
             {
                 Respawn();
                 life = 3;
-            }       
+            }
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        GameManager.gameEnemies--;
-        life = 3;
-        Respawn();
+        Debug.Log(collision.tag);
+        if (collision.CompareTag("EnemyBullet"))
+        {
+            GameManager.gameEnemies--;
+            life = 3;
+            Respawn();
+        }
     }
 
     void Respawn()
