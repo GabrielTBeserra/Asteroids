@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     private float timeAmmoCounter;
     private float timeAsteroidCounter;
     private float timeEnemyCounter;
-    
+
 
 
     [SerializeField]
@@ -108,20 +108,24 @@ public class GameManager : MonoBehaviour
 
     void SpawnEnemy()
     {
+        Debug.Log(gameEnemies);
+        if (gameEnemies < 2)
+        {
+            gameEnemies++;
+            float xMin = GameManager.leftLimit.x;
+            float xMax = GameManager.rightLimit.x;
 
-        if (gameEnemies > 5) return;
+            float yMin = GameManager.leftLimit.y;
+            float yMax = GameManager.rightLimit.y;
 
-        gameEnemies++;
+            Vector2 posicaoInicial = new Vector2(xMin, Random.Range(yMin, yMax));
+            Quaternion rotacaoInicial = new Quaternion();
+            Instantiate(enemy, posicaoInicial, rotacaoInicial);
+        }
 
-        float xMin = GameManager.leftLimit.x;
-        float xMax = GameManager.rightLimit.x;
+        
 
-        float yMin = GameManager.leftLimit.y;
-        float yMax = GameManager.rightLimit.y;
 
-        Vector2 posicaoInicial = new Vector2(xMin, Random.Range(yMin, yMax));
-        Quaternion rotacaoInicial = new Quaternion();
-        Instantiate(enemy, posicaoInicial, rotacaoInicial);
     }
 
 }

@@ -25,11 +25,14 @@ public class EnemyController : MonoBehaviour
     float lastMovimentTime;
     float timeMovimentTime;
     float movimentInterval = 1;
+    
+    [SerializeField]
+    float velocity;
 
     void Start()
     {
         rgb = GetComponent<Rigidbody2D>();
-        rgb.AddForce(vectorDir[Random.Range(0, vectorDir.Length)] * 5);
+        rgb.AddForce(vectorDir[Random.Range(0, vectorDir.Length)] * velocity);
     }
 
     void Update()
@@ -55,7 +58,7 @@ public class EnemyController : MonoBehaviour
 
         if ((lastMovimentTime + movimentInterval) < timeMovimentTime)
         {
-            rgb.velocity = vectorDir[Random.Range(0, vectorDir.Length)] * 5;
+            rgb.velocity = vectorDir[Random.Range(0, vectorDir.Length)] * velocity;
             timeMovimentTime = 0;
         }
     }
@@ -86,10 +89,10 @@ public class EnemyController : MonoBehaviour
 
     void Shot()
     {
-        Vector3 targetDirection = ShipController.pos - transform.position;
-        Vector3 toRotate = Vector3.RotateTowards(transform.forward, targetDirection, 1.0f, 0.0f);
+        //Vector3 targetDirection = ShipController.pos - transform.position;
+        //Vector3 toRotate = Vector3.RotateTowards(transform.forward, targetDirection, 1.0f, 0.0f);
 
-        Debug.DrawRay(shooter.position, toRotate, Color.red);
+        //Debug.DrawRay(shooter.position, toRotate, Color.red);
 
         float angle = Mathf.Atan2(ShipController.pos.y - transform.position.y, ShipController.pos.x - transform.position.x) * Mathf.Rad2Deg - 90;
 

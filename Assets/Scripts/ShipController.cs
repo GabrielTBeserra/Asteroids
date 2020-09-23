@@ -111,10 +111,8 @@ public class ShipController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.tag);
         if (collision.CompareTag("EnemyBullet"))
         {
-            GameManager.gameEnemies--;
             life = 3;
             Respawn();
         }
