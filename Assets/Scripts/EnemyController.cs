@@ -37,11 +37,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        // Verifica os limites da camera para teleportar para o outro lado
         CheckCamLimits();
-        // Mantem a nave sempre 'reta' mesmo se ouver colisao
-        //transform.rotation = Quaternion.identity;
-        // Adiciona uma forca aleatoria em um direcao aleatoria
     }
 
 
@@ -89,10 +85,6 @@ public class EnemyController : MonoBehaviour
 
     void Shot()
     {
-        //Vector3 targetDirection = ShipController.pos - transform.position;
-        //Vector3 toRotate = Vector3.RotateTowards(transform.forward, targetDirection, 1.0f, 0.0f);
-
-        //Debug.DrawRay(shooter.position, toRotate, Color.red);
 
         float angle = Mathf.Atan2(ShipController.pos.y - transform.position.y, ShipController.pos.x - transform.position.x) * Mathf.Rad2Deg - 90;
 

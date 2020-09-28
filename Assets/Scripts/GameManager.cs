@@ -108,7 +108,6 @@ public class GameManager : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Debug.Log(gameEnemies);
         if (gameEnemies < 2)
         {
             gameEnemies++;
@@ -122,10 +121,5 @@ public class GameManager : MonoBehaviour
             Quaternion rotacaoInicial = new Quaternion();
             Instantiate(enemy, posicaoInicial, rotacaoInicial);
         }
-
-        
-
-
     }
-
 }
