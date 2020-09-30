@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class EnemyController : MonoBehaviour
     private Transform shooter;
 
     [SerializeField]
+    private HUDManager hud;
+
+    [SerializeField]
     private GameObject bulletPrefab;
 
     [SerializeField]
@@ -25,7 +29,7 @@ public class EnemyController : MonoBehaviour
     float lastMovimentTime;
     float timeMovimentTime;
     float movimentInterval = 1;
-    
+
     [SerializeField]
     float velocity;
 
@@ -98,9 +102,11 @@ public class EnemyController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        
+
         if (collision.CompareTag("Bullet"))
         {
+            HUDManager.Points++;
+            GameObject.FindGameObjectWithTag("ScoreText").GetComponentInChildren<Text>().text = "Score: " + HUDManager.Points;
             GameManager.gameEnemies--;
             Destroy(gameObject);
         }

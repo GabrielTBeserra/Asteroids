@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shooter: {fileID: 8895689692750877548}
+  hud: {fileID: 0}
   bulletPrefab: {fileID: 3591180799733364592, guid: 243253a50c4c999439aa9719798c955b, type: 3}
   shootInterval: 3
   velocity: 2

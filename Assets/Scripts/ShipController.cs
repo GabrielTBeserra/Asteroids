@@ -6,6 +6,9 @@ public class ShipController : MonoBehaviour
     private int speed;
 
     [SerializeField]
+    private HUDManager hud;
+
+    [SerializeField]
     public float rotationSpeed;
 
     [SerializeField]
@@ -13,6 +16,8 @@ public class ShipController : MonoBehaviour
 
     [SerializeField]
     private Transform firespotTransform;
+
+    public static int Points = 0;
 
     private int life;
     Rigidbody2D rgb2;
@@ -42,6 +47,7 @@ public class ShipController : MonoBehaviour
             GameObject gm = Instantiate(bulletPrefab, firespotTransform.position, firespotTransform.rotation);
                 gm.tag = "Bullet";
                 ammoCount--;
+                hud.Bullets(ammoCount);
             }
         }
     }
@@ -104,22 +110,28 @@ public class ShipController : MonoBehaviour
             if (life == 0)
             {
                 Respawn();
+                
                 life = 3;
             }
+            hud.LifeBar(life);
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyBullet"))
+        life--;
+        if (life == 0)
         {
-            life = 3;
             Respawn();
+            life = 3;
         }
+        hud.LifeBar(life);
     }
 
     void Respawn()
     {
+        hud.Score(0);
+        HUDManager.Points = 0;
         gameObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
         gameObject.transform.rotation = new Quaternion();
         rgb2.angularVelocity = 0;

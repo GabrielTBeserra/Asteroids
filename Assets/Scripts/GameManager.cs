@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject ammo;
 
+
     [SerializeField]
     private double spawnAmmoInterval;
 
@@ -36,14 +37,11 @@ public class GameManager : MonoBehaviour
     private float timeAsteroidCounter;
     private float timeEnemyCounter;
 
-
-
-    [SerializeField]
-    private Text ammos;
+   
 
     private void Start()
     {
-        ammos.text = "";
+       
         timeAmmoCounter = 0;
         timeAsteroidCounter = 0;
         timeEnemyCounter = 0;
@@ -58,7 +56,6 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        ammos.text = $"Quantidade de municao: {ShipController.ammoCount}";
         timeAmmoCounter += Time.deltaTime;
         timeAsteroidCounter += Time.deltaTime;
         timeEnemyCounter += Time.deltaTime;
@@ -85,7 +82,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnAsteroid()
     {
-        if (gameAsteroids < 10)
+        if (gameAsteroids < 5)
         {
             Instantiate(
                 asteroids[Random.Range(0, asteroids.Length)],
