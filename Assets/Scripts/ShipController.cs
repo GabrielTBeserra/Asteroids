@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Objetos;
 using UnityEngine;
 
-public class ShipController : MonoBehaviour
+public class ShipController : MonoBehaviour 
 {
     [SerializeField]
     private int speed;

@@ -9,14 +9,7 @@ namespace Assets.Scripts.Objetos
 {
     abstract class Inimigo : Vida, Spawnar, Atirar
     {
-        public void Atirar()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Spawn()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Atirar();
+        public abstract void Spawn();
     }
 }
