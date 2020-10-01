@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Objetos;
+using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
