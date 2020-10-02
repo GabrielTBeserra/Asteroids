@@ -134,3 +134,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c9d91eb0bbd95c4baa327988380069e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rgdb: {fileID: 0}
+  effects: {fileID: 8581260851831834754, guid: 56202e7d26719024aac20015914bc893, type: 3}

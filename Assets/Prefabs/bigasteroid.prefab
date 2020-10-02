@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 363858083125198589}
   - component: {fileID: 4894258888314247970}
   - component: {fileID: 5147358358840239043}
-  - component: {fileID: 2328246498416122080}
+  - component: {fileID: 3376001877883146865}
   m_Layer: 0
   m_Name: bigasteroid
   m_TagString: Enemy
@@ -124,8 +124,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &2328246498416122080
-CircleCollider2D:
+--- !u!60 &3376001877883146865
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -138,5 +138,21 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.32000002
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 0.64, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.2904877, y: 0.18101093}
+      - {x: -0.27278087, y: -0.14830758}
+      - {x: -0.0026188884, y: -0.28245026}
+      - {x: 0.21670757, y: -0.1592086}
+      - {x: 0.28548703, y: 0.025755752}
+      - {x: 0.18603754, y: 0.20320399}
+      - {x: -0.01643747, y: 0.2900221}

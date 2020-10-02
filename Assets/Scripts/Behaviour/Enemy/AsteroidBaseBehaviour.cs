@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AsteroidBaseBehaviour : Entity
 {
+    
     void Update()
     {
         TeleportOnCameraLimit();

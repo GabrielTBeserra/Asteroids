@@ -24,7 +24,7 @@ public class BigAsteroidBehaviour : AsteroidBaseBehaviour, IColliderWeapon
             destroyAsteroid();
             for (int i = 0; i < 3; i++)
             {
-                Instantiate(asteroidPrefab, gameObject.transform.position, gameObject.transform.rotation);
+                Instantiate(asteroidPrefab, gameObject.transform.position , gameObject.transform.rotation);
             }
         }
     }

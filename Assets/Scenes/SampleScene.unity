@@ -878,6 +878,22 @@ PrefabInstance:
       propertyPath: hud
       value: 
       objectReference: {fileID: 2024473500}
+    - target: {fileID: 1949443484366549076, guid: c7523b8054b134c4a87693ed304b0735, type: 3}
+      propertyPath: maxSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949443484366549076, guid: c7523b8054b134c4a87693ed304b0735, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949443484366549076, guid: c7523b8054b134c4a87693ed304b0735, type: 3}
+      propertyPath: weapon.currentAmmunition
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949443484366549076, guid: c7523b8054b134c4a87693ed304b0735, type: 3}
+      propertyPath: weapon.maxAmmunition
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1949443484366549077, guid: c7523b8054b134c4a87693ed304b0735, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.78

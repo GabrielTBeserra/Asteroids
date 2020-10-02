@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AlienShipBehaviour : Entity, IColliderWeapon, IShoot
 {
+    [SerializeField]
+    private Transform effects;
     private Rigidbody2D rgb;
 
     private Vector2[] vectorDir = new Vector2[] {
