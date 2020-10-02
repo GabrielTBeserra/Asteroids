@@ -10,7 +10,7 @@ public class AsteroidController : MonoBehaviour
         rgb2.velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
     }
 
-    void Update()
+    void Update() 
     {
         TeleportOnCameraLimit();
     }

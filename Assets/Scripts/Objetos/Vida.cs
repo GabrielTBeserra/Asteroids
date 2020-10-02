@@ -1,18 +1,25 @@
 ﻿namespace Assets.Scripts.Objetos
 {
-    class Vida
+    [System.Serializable]
+    public class Vida
     {
-        public int VidaTotal { get; set; }
-        public int VidaMaxima;
+        public int vidaTotal;
+        public int vidaMaxima;
+
+        public Vida(int vida)
+        {
+            vidaMaxima = vida;
+            vidaTotal = vida;
+        }
 
         public void AumentarVida(int v)
         {
-            VidaTotal += v;
+            vidaTotal += v;
         }
 
         public void DiminuirVida(int v)
         {
-            VidaTotal -= v;
+            vidaTotal -= v;
         }
 
     }

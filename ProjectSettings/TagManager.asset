@@ -9,6 +9,7 @@ TagManager:
   - Ammo
   - EnemieBullet
   - EnemyBullet
+  - ScoreText
   layers:
   - Default
   - TransparentFX

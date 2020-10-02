@@ -2,11 +2,8 @@
 
 namespace Assets.Scripts.Objetos
 {
-    class Asteroid : Vida, Spawnar
+    class Asteroid
     {
-        public void Spawn()
-        {
 
-        }
     }
 }

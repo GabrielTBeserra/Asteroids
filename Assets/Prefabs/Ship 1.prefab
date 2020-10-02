@@ -42,10 +42,11 @@ GameObject:
   - component: {fileID: 1949443484366549082}
   - component: {fileID: 1949443484366549076}
   - component: {fileID: 1949443484366549079}
+  - component: {fileID: 7542082590750181679}
   - component: {fileID: 1949443484366549078}
   m_Layer: 0
   m_Name: Ship 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,11 +129,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 144f2c805cca45b49a84c5d5a3bc8bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida:
+    vidaTotal: 3
+    vidaMaxima: 3
+  pontos:
+    pontos: 0
   speed: 5
-  hud: {fileID: 126787839664667404, guid: 24951bd55b5b9834c8138e449d2e3600, type: 3}
+  hud: {fileID: 0}
   rotationSpeed: 3
   bulletPrefab: {fileID: 3591180799733364592, guid: 243253a50c4c999439aa9719798c955b, type: 3}
   firespotTransform: {fileID: 1974656781}
+  weapon:
+    maxAmmunition: 10
+    currentAmmunition: 10
 --- !u!61 &1949443484366549079
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -159,6 +168,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
+--- !u!114 &7542082590750181679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949443484366549083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30af4e59d127d8c4993472a0c243faf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &1949443484366549078
 Rigidbody2D:
   serializedVersion: 4

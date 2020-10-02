@@ -165,6 +165,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961dd2e0e4a81174d830fbf5cd01620c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida:
+    vidaTotal: 1
+    vidaMaxima: 1
+  pontos:
+    pontos: 10
   shooter: {fileID: 8895689692750877548}
   hud: {fileID: 0}
   bulletPrefab: {fileID: 3591180799733364592, guid: 243253a50c4c999439aa9719798c955b, type: 3}

@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using Assets.Scripts.Objetos;
+using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : Entity
 {
     private Rigidbody2D rgb;
 
@@ -15,14 +15,14 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Transform shooter;
 
-    [SerializeField]
-    private HUDManager hud;
 
     [SerializeField]
     private GameObject bulletPrefab;
 
     [SerializeField]
     float shootInterval;
+
+    private ShipController ship;
 
     float lastShootTime;
     float timeShootCounter;
@@ -33,10 +33,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     float velocity;
 
+
     void Start()
     {
         rgb = GetComponent<Rigidbody2D>();
         rgb.AddForce(vectorDir[Random.Range(0, vectorDir.Length)] * velocity);
+        ship = GameObject.FindGameObjectWithTag("Player").GetComponent<ShipController>();
     }
 
     void Update()
@@ -89,8 +91,7 @@ public class EnemyController : MonoBehaviour
 
     void Shot()
     {
-
-        float angle = Mathf.Atan2(ShipController.pos.y - transform.position.y, ShipController.pos.x - transform.position.x) * Mathf.Rad2Deg - 90;
+        float angle = Mathf.Atan2(ship.getMyTranform().position.y - transform.position.y, ship.getMyTranform().position.x - transform.position.x) * Mathf.Rad2Deg - 90;
 
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
@@ -102,11 +103,9 @@ public class EnemyController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.CompareTag("Bullet"))
         {
-            HUDManager.Points++;
-            GameObject.FindGameObjectWithTag("ScoreText").GetComponentInChildren<Text>().text = "Score: " + HUDManager.Points;
+            HUDManager.atribuirPontos(ship.addPoints(pontos.pontos));
             GameManager.gameEnemies--;
             Destroy(gameObject);
         }

@@ -2,7 +2,8 @@
 
 public class BulletController : MonoBehaviour
 {
-    Rigidbody2D rgdb;
+    private Rigidbody2D rgdb;
+
     void Start()
     {
         rgdb = GetComponent<Rigidbody2D>();

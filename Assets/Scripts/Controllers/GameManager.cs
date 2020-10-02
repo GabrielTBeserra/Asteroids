@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject ammo;
 
-
     [SerializeField]
     private double spawnAmmoInterval;
 
@@ -41,7 +40,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-       
         timeAmmoCounter = 0;
         timeAsteroidCounter = 0;
         timeEnemyCounter = 0;
@@ -51,7 +49,6 @@ public class GameManager : MonoBehaviour
         lastSpawnedAmmoTime = timeAmmoCounter;
         lastSpawnedAsteroidTime = timeAsteroidCounter;
         lastSpawnedEnemyTime = timeEnemyCounter;
-
     }
 
     void FixedUpdate()

@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.Interface
 {
-    interface Atirar
+    public interface Atirar
     {
         void Atirar();
     }

@@ -12,15 +12,30 @@ public class HUDManager : MonoBehaviour
     [SerializeField]
     private GameObject[] healts;
 
-    public static int Points;
+    public int Points;
 
+    public delegate void eventHudManager(int value);
+    public static eventHudManager atribuirPontos, atribuirVida, atribuirAmmunition;
 
     void Start()
     {
         ammos.text = "Quantidade de municao: 10";
-       
     }
-    
+
+    void OnEnable()
+    {
+        atribuirPontos += Score;
+        atribuirVida += LifeBar;
+        atribuirAmmunition += Bullets;
+    }
+
+    void OnDisable()
+    {
+        atribuirPontos -= Score;
+        atribuirVida -= LifeBar;
+        atribuirAmmunition -= Bullets;
+    }
+
     public void LifeBar(int life)
     {
         switch (life)
@@ -47,11 +62,12 @@ public class HUDManager : MonoBehaviour
 
     public void Score(int score)
     {
-       ScoreText.text = "Score: " + score;
+        ScoreText.text = "Score: " + score;
     }
 
     public void Bullets(int count)
-    {       
+    {
         ammos.text = $"Quantidade de municao: {count}";
     }
+
 }
