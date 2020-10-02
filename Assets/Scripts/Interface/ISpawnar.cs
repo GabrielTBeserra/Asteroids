@@ -1,7 +1,7 @@
 ﻿namespace Assets.Scripts.Interface
 {
-    public interface Spawnar
+    public interface ISpawnar
     {
-       void Spawn();
+       void spaw();
     }
 }

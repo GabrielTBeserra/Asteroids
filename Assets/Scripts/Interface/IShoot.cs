@@ -1,7 +1,7 @@
 ﻿namespace Assets.Scripts.Interface
 {
-    public interface Atirar
+    public interface IShoot
     {
-        void Atirar();
+        void shoot();
     }
 }

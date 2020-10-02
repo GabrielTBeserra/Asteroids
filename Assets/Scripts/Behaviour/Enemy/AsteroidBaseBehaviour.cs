@@ -1,21 +1,16 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Objetos;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class AsteroidController : MonoBehaviour
+public class AsteroidBaseBehaviour : Entity
 {
-    Rigidbody2D rgb2;
-
-    void Start()
-    {
-        rgb2 = GetComponent<Rigidbody2D>();
-        rgb2.velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-    }
-
-    void Update() 
+    void Update()
     {
         TeleportOnCameraLimit();
     }
 
-    void TeleportOnCameraLimit()
+    protected void TeleportOnCameraLimit()
     {
         Vector3 pos = transform.position;
 
@@ -39,13 +34,9 @@ public class AsteroidController : MonoBehaviour
         transform.position = pos;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    protected void destroyAsteroid()
     {
-        // Destroi o asteroid caso uma 'Bullet' toque nele
-        if (collision.CompareTag("Bullet"))
-        {
-            GameManager.gameAsteroids--;
-            Destroy(gameObject);
-        }
+        GameManager.gameAsteroids--;
+        Destroy(gameObject);
     }
 }

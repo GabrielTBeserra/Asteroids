@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Interface
 {
-    public interface Bullet
+    public interface IBullet
     {
         
     }

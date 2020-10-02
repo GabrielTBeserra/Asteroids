@@ -10,18 +10,18 @@ namespace Assets.Scripts
 {
     public class InputController : MonoBehaviour
     {
-        private Atirar atirar;
+        private IShoot atirar;
 
         void Start()
         {
-            atirar = GameObject.FindGameObjectWithTag("Player").GetComponent<Atirar>();    
+            atirar = GameObject.FindGameObjectWithTag("Player").GetComponent<IShoot>();    
         }
 
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0))
             {
-                atirar.Atirar();        
+                atirar.shoot();        
             }
         }
     }

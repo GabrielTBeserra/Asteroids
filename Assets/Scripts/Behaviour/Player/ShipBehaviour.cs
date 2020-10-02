@@ -2,24 +2,17 @@
 using Assets.Scripts.Objetos;
 using UnityEngine;
 
-public class ShipController : Entity, Atirar
+public class ShipBehaviour : Entity, IShoot, IColliderWeapon
 {
-    [SerializeField]
-    private int speed;
-    //    [SerializeField]
-    //      private HUDManager hud;
-    [SerializeField]
-    private GameObject bulletPrefab;
-    [SerializeField]
-    private Transform firespotTransform;
+
+    [SerializeField] private float speed;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firespotTransform;
+    [SerializeField] private Weapon weapon;
+    [SerializeField] public float rotationSpeed;
+
     private Transform myTransform;
-    [SerializeField]
-    private Weapon weapon;
     private Rigidbody2D rgb2;
-
-    [SerializeField]
-    public float rotationSpeed;
-
 
     void Start()
     {
@@ -32,23 +25,7 @@ public class ShipController : Entity, Atirar
         rgb2.angularVelocity = 0;
     }
 
-
-    public Transform getMyTranform()
-    {
-        return myTransform;
-    }
-
-    public int addPoints(int points)
-    {
-        pontos.pontos += points;
-        return pontos.pontos;
-    }
-
-    public void reset()
-    {
-        pontos.pontos = 0;
-    }
-
+  
     void FixedUpdate()
     {
         CheckCamLimits();
@@ -85,43 +62,26 @@ public class ShipController : Entity, Atirar
         if (col.gameObject.CompareTag("Ammo"))
         {
             weapon.addAmmunition(5);
-            // hud.Bullets(weapon.currentAmmunition);
-
-            HUDManager.atribuirAmmunition(weapon.currentAmmunition);
+            EventController.atribuirAmmunition(weapon.currentAmmunition);
             Destroy(col.gameObject);
         }
         else
         {
-            vida.DiminuirVida(1);
+            vida.diminuirVida(1);
             if (vida.vidaTotal == 0)
             {
                 Respawn();
 
                 vida.vidaTotal = 3;
             }
-            HUDManager.atribuirVida(vida.vidaTotal);
-            //hud.LifeBar(vida.vidaTotal);
+            EventController.atribuirVida(vida.vidaTotal);
         }
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        vida.DiminuirVida(1);
-        if (vida.vidaTotal == 0)
-        {
-            Respawn();
-
-            vida.vidaTotal = 3;
-        }
-        HUDManager.atribuirVida(vida.vidaTotal);
-        //hud.LifeBar(vida.vidaTotal);
     }
 
     void Respawn()
     {
-        //hud.Score(0);
         reset();
-        HUDManager.atribuirPontos(pontos.pontos);
+        EventController.atribuirPontos(pontos.pontos);
         gameObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
         gameObject.transform.rotation = new Quaternion();
         rgb2.angularVelocity = 0;
@@ -130,22 +90,53 @@ public class ShipController : Entity, Atirar
 
     public void Mover()
     {
+        
         float h = rotationSpeed * Input.GetAxisRaw("Horizontal");
         float v = rotationSpeed * Input.GetAxisRaw("Vertical");
 
         transform.Rotate(-Vector3.forward * h * rotationSpeed);
         rgb2.AddRelativeForce(Vector3.up * v * speed);
     }
-
-    public void Atirar()
+    public void shoot()
     {
         if (!weapon.isEmpty())
         {
-            GameObject gm = Instantiate(bulletPrefab, firespotTransform.position, firespotTransform.rotation);
-            gm.tag = "Bullet";
+            GameObject bulletGo = Instantiate(bulletPrefab, firespotTransform.position, firespotTransform.rotation);
+            BulletBehaviour bulletController = bulletGo.GetComponent<BulletBehaviour>();
+
+            bulletController.Damage = 1; 
+            bulletController.tagName = "Player";
+
             weapon.removeAmmunition();
-            HUDManager.atribuirAmmunition(weapon.currentAmmunition);
-           //hud.Bullets(weapon.currentAmmunition);
+            EventController.atribuirAmmunition(weapon.currentAmmunition);
         }
     }
+    public void damageWeapon(int damage)
+    {
+        vida.diminuirVida(damage);
+        EventController.atribuirVida(vida.vidaTotal);
+        if (vida.vidaTotal == 0)
+        {
+            Respawn();
+
+            vida.vidaTotal = 3;
+        }
+    }
+
+    public Transform getMyTranform()
+    {
+        return myTransform;
+    }
+
+    public int addPoints(int points)
+    {
+        pontos.pontos += points;
+        return pontos.pontos;
+    }
+
+    public void reset()
+    {
+        pontos.pontos = 0;
+    }
+
 }

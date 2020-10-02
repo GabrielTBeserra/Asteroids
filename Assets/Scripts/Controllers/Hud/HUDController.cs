@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class HUDManager : MonoBehaviour
+public class HUDController : MonoBehaviour
 {
     [SerializeField]
     private Text ammos;
@@ -14,9 +14,6 @@ public class HUDManager : MonoBehaviour
 
     public int Points;
 
-    public delegate void eventHudManager(int value);
-    public static eventHudManager atribuirPontos, atribuirVida, atribuirAmmunition;
-
     void Start()
     {
         ammos.text = "Quantidade de municao: 10";
@@ -24,16 +21,16 @@ public class HUDManager : MonoBehaviour
 
     void OnEnable()
     {
-        atribuirPontos += Score;
-        atribuirVida += LifeBar;
-        atribuirAmmunition += Bullets;
+        EventController.atribuirPontos += Score;
+        EventController.atribuirVida += LifeBar;
+        EventController.atribuirAmmunition += Bullets;
     }
 
     void OnDisable()
     {
-        atribuirPontos -= Score;
-        atribuirVida -= LifeBar;
-        atribuirAmmunition -= Bullets;
+        EventController.atribuirPontos -= Score;
+        EventController.atribuirVida -= LifeBar;
+        EventController.atribuirAmmunition -= Bullets;
     }
 
     public void LifeBar(int life)

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2328246498416122080}
   m_Layer: 0
   m_Name: bigasteroid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,8 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4428716ad71cdb145a56b5f05836edf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida:
+    vidaTotal: 3
+    vidaMaxima: 3
+  pontos:
+    pontos: 10
   asteroidPrefab: {fileID: 3320429418716381532, guid: eadac863ac8b4ab41b3a9ed10cedbd91, type: 3}
-  asteroidLife: 3
 --- !u!50 &5147358358840239043
 Rigidbody2D:
   serializedVersion: 4

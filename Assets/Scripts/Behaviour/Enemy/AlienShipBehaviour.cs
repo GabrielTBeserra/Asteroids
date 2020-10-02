@@ -1,7 +1,8 @@
-﻿using Assets.Scripts.Objetos;
+﻿using Assets.Scripts.Interface;
+using Assets.Scripts.Objetos;
 using UnityEngine;
 
-public class EnemyController : Entity
+public class AlienShipBehaviour : Entity, IColliderWeapon, IShoot
 {
     private Rigidbody2D rgb;
 
@@ -22,7 +23,7 @@ public class EnemyController : Entity
     [SerializeField]
     float shootInterval;
 
-    private ShipController ship;
+    private ShipBehaviour ship;
 
     float lastShootTime;
     float timeShootCounter;
@@ -38,7 +39,7 @@ public class EnemyController : Entity
     {
         rgb = GetComponent<Rigidbody2D>();
         rgb.AddForce(vectorDir[Random.Range(0, vectorDir.Length)] * velocity);
-        ship = GameObject.FindGameObjectWithTag("Player").GetComponent<ShipController>();
+        ship = GameObject.FindGameObjectWithTag("Player").GetComponent<ShipBehaviour>();
     }
 
     void Update()
@@ -54,7 +55,7 @@ public class EnemyController : Entity
 
         if ((lastShootTime + shootInterval) < timeShootCounter)
         {
-            Shot();
+            shoot();
             timeShootCounter = 0;
         }
 
@@ -89,25 +90,23 @@ public class EnemyController : Entity
         transform.position = pos;
     }
 
-    void Shot()
+
+    public void damageWeapon(int damage)
+    {
+        EventController.atribuirPontos(ship.addPoints(pontos.pontos));
+        GameManager.gameEnemies--;
+        Destroy(gameObject);
+    }
+
+    public void shoot()
     {
         float angle = Mathf.Atan2(ship.getMyTranform().position.y - transform.position.y, ship.getMyTranform().position.x - transform.position.x) * Mathf.Rad2Deg - 90;
-
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
-
         shooter.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 1000);
 
         GameObject bulletGo = Instantiate(bulletPrefab, transform.position, shooter.rotation);
-        bulletGo.tag = "EnemyBullet";
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Bullet"))
-        {
-            HUDManager.atribuirPontos(ship.addPoints(pontos.pontos));
-            GameManager.gameEnemies--;
-            Destroy(gameObject);
-        }
+        BulletBehaviour bulletBehaviour = bulletGo.GetComponent<BulletBehaviour>();
+        bulletBehaviour.Damage = 1;
+        bulletBehaviour.tagName = "Enemy";
     }
 }

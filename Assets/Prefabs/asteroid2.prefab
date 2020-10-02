@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7417354216686289355}
   m_Layer: 0
   m_Name: asteroid2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,3 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3078eda9e68616a49a60321be15bf8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida:
+    vidaTotal: 1
+    vidaMaxima: 1
+  pontos:
+    pontos: 1
