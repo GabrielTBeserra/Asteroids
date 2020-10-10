@@ -2,6 +2,6 @@
 {
     public interface ISpawnar
     {
-       void spaw();
+       void spawn();
     }
 }
