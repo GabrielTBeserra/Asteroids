@@ -20,7 +20,7 @@ public class BigAsteroidBehaviour : AsteroidBaseBehaviour, IColliderWeapon
         vida.diminuirVida(damage);
         if (vida.isEmpty())
         {
-            EventController.atribuirPontos(pontos.pontos);
+            EventController.atribuirPontos(pontos.pontos());
             destroyAsteroid();
             for (int i = 0; i < 3; i++)
             {

@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Interface;
+using UnityEngine;
 
-public class BulletBehaviour : MonoBehaviour
+public class BulletBehaviour : MonoBehaviour, IBullet
 {
     [SerializeField]
     private Rigidbody2D rgdb;
@@ -16,7 +17,7 @@ public class BulletBehaviour : MonoBehaviour
         Destroy(gameObject, 5.0f);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    /*void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.tag.Equals(tagName)) { 
             IColliderWeapon colliderWeapon = collision.GetComponent<IColliderWeapon>();
@@ -27,5 +28,25 @@ public class BulletBehaviour : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }*/
+
+    public int damage()
+    {
+        return Damage;
+    }
+
+    public string originalTagName()
+    {
+        return tagName;
+    }
+
+    public void originalTagName(string nome)
+    {
+        tagName = nome;
+    }
+
+    public void damage(int damage)
+    {
+        Damage = damage; ;
     }
 }

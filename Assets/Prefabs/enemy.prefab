@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 5910091909205930188}
   - component: {fileID: 7414241224646612220}
   - component: {fileID: 8081556848502789164}
+  - component: {fileID: 186051062328802486}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Enemy
@@ -166,8 +167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida:
+    vida: 0
     vidaTotal: 1
-    vidaMaxima: 1
   pontos:
     pontos: 5
   effects: {fileID: 8581260851831834754, guid: 56202e7d26719024aac20015914bc893, type: 3}
@@ -175,3 +176,16 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3591180799733364592, guid: 243253a50c4c999439aa9719798c955b, type: 3}
   shootInterval: 3
   velocity: 2
+--- !u!114 &186051062328802486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2423294096830179630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d956b8ebcacadd94887a1ef340dee366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects: {fileID: 8581260851831834754, guid: 56202e7d26719024aac20015914bc893, type: 3}

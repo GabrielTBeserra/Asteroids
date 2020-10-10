@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace Assets.Scripts.Interface
 {
     public interface IBullet
     {
-        
+        int damage();
+
+        void damage(int damage);
+
+        string originalTagName();
+        void originalTagName(string nome);
     }
 }

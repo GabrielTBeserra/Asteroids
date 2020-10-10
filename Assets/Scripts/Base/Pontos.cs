@@ -3,18 +3,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
-namespace Assets.Scripts.Objetos
-{
-    [System.Serializable]
-    public class Pontos
+    public class Pontos: MonoBehaviour , IPontos
     {
-        public int pontos;
+        private static int ZERO;
+        [SerializeField]
+        private int pontosAtuais;
         public Pontos()
         {
-            pontos = 0;
+            pontosAtuais = 0;
         }
 
-        
+        public void addPonto()
+        {
+            pontosAtuais++;
+        }
+
+        public void addPontos(int pontos)
+        {
+            this.pontosAtuais += pontos;
+        }
+
+        public void atribuirPontos(int pontos)
+        {
+            this.pontosAtuais = pontos;
+        }
+
+        public void removePonto()
+        {
+            pontosAtuais--;
+            pontosZero();
+        }
+
+        public void removePontos(int pontos)
+        {
+            this.pontosAtuais -= pontos;
+            pontosZero();
+        }
+
+        public int pontos()
+        {
+            return pontosAtuais;
+        }
+
+        public void pontosZero()
+        {
+            if (pontosAtuais < ZERO)
+            {
+                pontosAtuais = ZERO;
+            }
+        }
     }
-}
+

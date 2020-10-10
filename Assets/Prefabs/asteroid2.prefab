@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7581932335915645464}
   - component: {fileID: 7417354216686289355}
   - component: {fileID: 4306039562524788986}
+  - component: {fileID: 4553584503370514544}
   m_Layer: 0
   m_Name: asteroid2
   m_TagString: Enemy
@@ -119,8 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida:
+    vida: 0
     vidaTotal: 1
-    vidaMaxima: 1
   pontos:
     pontos: 1
 --- !u!60 &4306039562524788986
@@ -155,3 +156,16 @@ PolygonCollider2D:
       - {x: -0.095205605, y: -0.3172248}
       - {x: 0.3144496, y: -0.120182574}
       - {x: 0.16458684, y: 0.250619}
+--- !u!114 &4553584503370514544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7581932335915645460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d956b8ebcacadd94887a1ef340dee366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects: {fileID: 8581260851831834754, guid: 56202e7d26719024aac20015914bc893, type: 3}

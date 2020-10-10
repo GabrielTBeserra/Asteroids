@@ -17,7 +17,7 @@ public class AsteroidBehaviour : AsteroidBaseBehaviour, IColliderWeapon
         vida.diminuirVida(damage);
         if (vida.isEmpty())
         {
-            EventController.atribuirPontos(pontos.pontos);
+            EventController.atribuirPontos(pontos.pontos());
             destroyAsteroid();
         }
     }

@@ -7,8 +7,8 @@ namespace Assets.Scripts.Objetos
     public class Entity : MonoBehaviour
     {
         [SerializeField]
-        protected Vida vida;
+        public Vida vida;
         [SerializeField]
-        protected Pontos pontos;
+        public Pontos pontos;
     }
 }

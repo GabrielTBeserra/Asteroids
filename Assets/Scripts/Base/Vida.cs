@@ -1,37 +1,57 @@
-﻿namespace Assets.Scripts.Objetos
-{
-    [System.Serializable]
-    public class Vida
+﻿using UnityEngine;
+    
+    public class Vida : MonoBehaviour, IVida
     {
-        public int vidaTotal;
-        public int vidaMaxima;
+        private static int ZERO = 0;
+        [SerializeField]
+        private int vida;
+        [SerializeField]
+        private int vidaTotal;
 
         public Vida(int vida)
         {
-            vidaMaxima = vida;
             vidaTotal = vida;
+            this.vida = vida;
         }
 
         public void aumentarVida(int v)
         {
-            vidaTotal += v;
+            if((vida += v) >= vidaTotal)
+                vida = vidaTotal;
+            else 
+                vida += v;
         }
 
         public void diminuirVida(int v)
         {
-            if (vidaTotal > 0)
+            if (vida > ZERO)
             {
-                vidaTotal -= v;
+                vida -= v;
             }
             else
             {
-                vidaTotal = 0;
+                vida = ZERO;
             }
         }
 
         public bool isEmpty()
         {
-            return vidaTotal <= 0 ? true : false;
+            return vida <= 0 ? true : false;
+        }
+
+        public void restart()
+        {
+            vida = vidaTotal;
+        }
+
+        public int vidaAtual()
+        {
+            return vida;
+        }
+
+        public int vidaMaxima()
+        {
+            return vidaTotal;
         }
     }
-}
+

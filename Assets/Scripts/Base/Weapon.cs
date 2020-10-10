@@ -42,7 +42,5 @@
         {
             return currentAmmunition == 0 ? true : false;
         }
-
-
     }
 }

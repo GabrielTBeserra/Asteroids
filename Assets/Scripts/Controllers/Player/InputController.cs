@@ -10,11 +10,11 @@ namespace Assets.Scripts
 {
     public class InputController : MonoBehaviour
     {
-        private IShoot atirar;
+        private IWeapon atirar;
 
         void Start()
         {
-            atirar = GameObject.FindGameObjectWithTag("Player").GetComponent<IShoot>();    
+            atirar = GameObject.FindGameObjectWithTag("Player").GetComponent<IWeapon>();    
         }
 
         void Update()

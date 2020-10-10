@@ -2,7 +2,7 @@
 using Assets.Scripts.Objetos;
 using UnityEngine;
 
-public class AlienShipBehaviour : Entity, IColliderWeapon, IShoot
+public class AlienShipBehaviour : Entity, IColliderWeapon, IWeapon
 {
     [SerializeField]
     private Transform effects;
@@ -95,7 +95,7 @@ public class AlienShipBehaviour : Entity, IColliderWeapon, IShoot
 
     public void damageWeapon(int damage)
     {
-        EventController.atribuirPontos(ship.addPoints(pontos.pontos));
+       /* EventController.atribuirPontos(ship.addPoints(pontos.pontos()));*/
         GameManager.gameEnemies--;
         Destroy(gameObject);
     }
@@ -110,5 +110,25 @@ public class AlienShipBehaviour : Entity, IColliderWeapon, IShoot
         BulletBehaviour bulletBehaviour = bulletGo.GetComponent<BulletBehaviour>();
         bulletBehaviour.Damage = 1;
         bulletBehaviour.tagName = "Enemy";
+    }
+
+    public void removeAmmunition()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void addAmmunition(int amountAmmunation)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public bool isEmptyAmmunition()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public int getCurrentAmmunition()
+    {
+        throw new System.NotImplementedException();
     }
 }
